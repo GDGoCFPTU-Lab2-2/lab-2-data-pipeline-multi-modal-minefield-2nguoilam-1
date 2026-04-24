@@ -1,1 +1,4 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=23708318&assignment_repo_type=AssignmentRepo)
+**Nhóm: 2nguoilam**
+
+*Thành viên 1: Trần Đặng Quang Huy - 2A202600292 - 26ai.huytdq@vinuni.edu.vn - huytdqhe180383*
+*Thành viên 2: Nguyễn Quang Đăng - 2A202600483 - 26ai.dangnq@vinuni.edu.vn - danieop*

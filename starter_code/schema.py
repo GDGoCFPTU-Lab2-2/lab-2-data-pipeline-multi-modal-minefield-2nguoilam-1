@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List
+from typing import Any, Dict, Optional
 from datetime import datetime
 
 # ==========================================
@@ -9,14 +9,19 @@ from datetime import datetime
 # This is v1. Note: A breaking change is coming at 11:00 AM!
 
 class UnifiedDocument(BaseModel):
-    # TODO: Define the v1 schema. 
-    # Suggested fields: document_id, content, source_type, author, timestamp, metadata
-    
-    document_id: str
-    content: str
-    source_type: str # e.g., 'PDF', 'Video', 'HTML', 'CSV', 'Code'
-    author: Optional[str] = "Unknown"
-    timestamp: Optional[datetime] = None
-    
-    # You might want a dict for source-specific metadata
-    source_metadata: dict = Field(default_factory=dict)
+    """Canonical document contract shared by every pipeline source."""
+
+    document_id: str = Field(..., description="Unique document identifier")
+    content: str = Field(..., description="Normalized text or structured content")
+    source_type: str = Field(..., description="Origin of the document, for example PDF, Video, HTML, CSV, or Code")
+    author: Optional[str] = Field(default="Unknown", description="Author or owner when available")
+    timestamp: Optional[datetime] = Field(default=None, description="Source timestamp when available")
+    source_metadata: Dict[str, Any] = Field(default_factory=dict, description="Source-specific metadata")
+
+    class Config:
+        extra = "allow"
+
+    @property
+    def metadata(self) -> Dict[str, Any]:
+        """Compatibility alias for code that expects a generic metadata field."""
+        return self.source_metadata
